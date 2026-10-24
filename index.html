@@ -884,8 +884,9 @@
        JAVASCRIPT
   ====================================================== -->
   <script>
-    /* Always show cover on refresh */
+    /* Always show cover on refresh — clear any section hash from URL */
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    if (window.location.hash) history.replaceState(null, '', window.location.pathname);
     window.scrollTo(0, 0);
 
     /* ----- COVER ----- */
