@@ -304,8 +304,8 @@
       display:inline-block;
       padding:.45rem 1.4rem;
       border:1px solid rgba(201,168,76,.42); border-radius:2px;
-      font-family:'Cinzel',serif; font-size:clamp(.58rem,1.8vw,.75rem);
-      letter-spacing:.3em; color:var(--gold); text-transform:uppercase;
+      font-family:'Cinzel',serif; font-size:clamp(.72rem,2vw,.92rem);
+      font-weight:700; letter-spacing:.3em; color:var(--gold); text-transform:uppercase;
       margin-bottom:.5rem;
     }
 
@@ -724,7 +724,7 @@
           <div class="ornament-line"></div>
         </div>
         <div class="date-chip">Monday &nbsp;·&nbsp; 16 November 2026 &nbsp;·&nbsp; 7:00 AM</div>
-        <p class="hero-venue-sub" style="margin-top:.45rem;">Sri Devi Palace AC Marriage Hall, Chennai</p>
+        <p class="hero-venue-sub" style="margin-top:.45rem;font-weight:600;font-size:clamp(1rem,2.5vw,1.15rem);color:var(--cream);">Sri Devi Palace AC Marriage Hall, Chennai</p>
       </div>
     </section>
 
@@ -915,9 +915,9 @@
     (function spawnPetals() {
       const layer = document.getElementById('snow-layer');
       const colors = [
-        [255,182,193],[220,130,150],[255,160,175],[200,100,120],[240,200,210],[180,80,110]
+        [255,220,230],[255,240,245],[255,200,215],[255,255,255],[250,230,238],[255,245,250]
       ];
-      const COUNT = 55;
+      const COUNT = 30;
       for (let i = 0; i < COUNT; i++) {
         const f = document.createElement('div');
         f.className = 'petal';
