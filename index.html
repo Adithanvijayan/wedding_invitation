@@ -46,18 +46,19 @@
       z-index: 300;
       overflow: hidden;
     }
-    .flake {
+    .petal {
       position: absolute;
-      top: -12px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.82);
-      animation: snow-fall linear infinite;
+      top: -15px;
+      border-radius: 50% 0 50% 0;
+      animation: petal-fall linear infinite;
       will-change: transform, opacity;
     }
-    @keyframes snow-fall {
-      0%   { transform: translateY(0) translateX(0) rotate(0deg);   opacity: var(--fop); }
-      50%  { transform: translateY(50vh) translateX(var(--sway)) rotate(180deg); }
-      100% { transform: translateY(110vh) translateX(0) rotate(360deg); opacity: 0; }
+    @keyframes petal-fall {
+      0%   { transform: translateY(0) translateX(0) rotate(0deg);        opacity: var(--fop); }
+      25%  { transform: translateY(28vh) translateX(calc(var(--sway)*.6)) rotate(135deg); }
+      50%  { transform: translateY(55vh) translateX(var(--sway))          rotate(270deg); }
+      75%  { transform: translateY(80vh) translateX(calc(var(--sway)*.3)) rotate(405deg); }
+      100% { transform: translateY(112vh) translateX(0) rotate(540deg);   opacity: 0; }
     }
 
     /* ============================================================
@@ -211,11 +212,11 @@
        HERO — simple, clean background
     ============================================================ */
     #hero {
-      min-height: 100vh;
+      min-height: 100dvh;
       display: flex; flex-direction:column;
       align-items:center; justify-content:center;
       text-align:center;
-      padding: 5rem 1.5rem 7rem;
+      padding: clamp(2rem,5dvh,5rem) 1.5rem clamp(3rem,6dvh,7rem);
       position: relative;
       background: linear-gradient(180deg, #2D0A12 0%, #1A0408 100%);
     }
@@ -226,14 +227,14 @@
       text-transform:uppercase; margin-bottom:0.7rem;
     }
     .hero-invite-text {
-      font-size:clamp(1rem,2.5vw,1.15rem);
+      font-size:clamp(.88rem,2.2vw,1.1rem);
       font-style:italic; color:var(--cream-dim);
-      line-height:1.9; max-width:440px; margin-bottom:0.3rem;
+      line-height:clamp(1.5,3.5dvh,1.9); max-width:440px; margin-bottom:0.3rem;
     }
-    .hero-names-wrap { position:relative; margin:0.5rem 0; }
+    .hero-names-wrap { position:relative; margin:clamp(.1rem,1dvh,.5rem) 0; }
     .hero-name {
       font-family:'Cormorant Garamond',serif;
-      font-size:clamp(4.5rem,14vw,9rem);
+      font-size:clamp(4rem,min(18vw,14dvh),11rem);
       font-weight:400; font-style:italic;
       color:var(--cream); line-height:.95; display:block;
       text-shadow:0 0 60px rgba(201,168,76,0.14), 0 2px 20px rgba(0,0,0,0.45);
@@ -355,17 +356,17 @@
     }
     .event-date-line {
       font-family:'Playfair Display', Georgia, serif;
-      font-size:clamp(.9rem,2.5vw,1.1rem);
-      font-style:italic; color:var(--cream);
+      font-size:clamp(1.05rem,3vw,1.25rem);
+      font-style:italic; font-weight:600; color:var(--cream);
       letter-spacing:.04em;
     }
     .event-time-line {
       font-family:'Cinzel',serif;
-      font-size:clamp(.52rem,1.5vw,.66rem);
-      letter-spacing:.3em; color:var(--gold);
+      font-size:clamp(.62rem,1.8vw,.78rem);
+      letter-spacing:.3em; color:var(--gold); font-weight:600;
       text-transform:uppercase;
-      padding:.3rem .9rem;
-      border:1px solid rgba(201,168,76,.28); border-radius:20px;
+      padding:.35rem 1rem;
+      border:1px solid rgba(201,168,76,.4); border-radius:20px;
       margin-top:.3rem;
     }
     .card-row {
@@ -374,7 +375,8 @@
     }
     .card-row-icon { color:var(--gold); font-size:.95rem; flex-shrink:0; margin-top:.1rem; }
     .card-row-body {
-      font-size:clamp(.9rem,2.2vw,1rem); color:var(--cream-dim); line-height:1.65;
+      font-size:clamp(1rem,2.5vw,1.12rem); font-weight:600;
+      color:var(--cream); line-height:1.65;
     }
     .card-note {
       font-style:italic; font-size:clamp(.84rem,2vw,.94rem);
@@ -595,6 +597,9 @@
       .events-grid,.families-grid{grid-template-columns:1fr}
       #nav{padding:.4rem .55rem}
       #nav a{padding:.26rem .42rem;letter-spacing:.08em}
+      .scroll-cue{font-size:.65rem;color:var(--gold)}
+      .hero-invite-text{font-size:1.05rem}
+      .hero-tagline{font-size:.7rem}
     }
   </style>
 </head>
@@ -756,7 +761,7 @@
           <p class="card-note">Join us for an evening of celebration,<br>happiness and togetherness.</p>
         </div>
 
-        <!-- Muhurtham -->
+        <!-- Wedding -->
         <div class="event-card fade-in d2">
           <div class="card-corner tl"></div><div class="card-corner tr"></div>
           <div class="card-corner bl"></div><div class="card-corner br"></div>
@@ -764,7 +769,7 @@
             <circle cx="20" cy="18" r="14" stroke="#C9A84C" stroke-width="1.2" fill="rgba(201,168,76,0.06)"/>
             <circle cx="40" cy="18" r="14" stroke="#C9A84C" stroke-width="1.2" fill="rgba(201,168,76,0.06)"/>
           </svg>
-          <div class="card-title">Muhurtham</div>
+          <div class="card-title">Wedding</div>
           <div class="event-datetime">
             <div class="event-date-line">Monday, 16th November 2026</div>
             <div class="event-time-line">6:00 AM &nbsp;–&nbsp; 7:15 AM</div>
@@ -906,22 +911,28 @@
     cover.addEventListener('click', openCover);
     cover.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' ') openCover(); });
 
-    /* ----- SNOW ----- */
-    (function spawnSnow() {
+    /* ----- PETALS ----- */
+    (function spawnPetals() {
       const layer = document.getElementById('snow-layer');
-      const COUNT = 70;
+      const colors = [
+        [255,182,193],[220,130,150],[255,160,175],[200,100,120],[240,200,210],[180,80,110]
+      ];
+      const COUNT = 55;
       for (let i = 0; i < COUNT; i++) {
         const f = document.createElement('div');
-        f.className = 'flake';
-        const sz   = 2 + Math.random() * 5;          // 2–7 px
-        const left = Math.random() * 100;             // 0–100 vw
-        const dur  = 6 + Math.random() * 10;         // 6–16 s
-        const del  = Math.random() * -14;            // stagger start
-        const sway = (Math.random() - 0.5) * 80;    // ±40 px horizontal drift
-        const op   = 0.35 + Math.random() * 0.55;   // 0.35–0.9
+        f.className = 'petal';
+        const w    = 7 + Math.random() * 9;
+        const h    = w * (0.55 + Math.random() * 0.35);
+        const left = Math.random() * 100;
+        const dur  = 7 + Math.random() * 11;
+        const del  = Math.random() * -18;
+        const sway = (Math.random() - 0.5) * 130;
+        const op   = 0.35 + Math.random() * 0.5;
+        const [r,g,b] = colors[Math.floor(Math.random() * colors.length)];
         f.style.cssText = [
-          `width:${sz}px`, `height:${sz}px`,
+          `width:${w}px`, `height:${h}px`,
           `left:${left}%`,
+          `background:rgba(${r},${g},${b},${op.toFixed(2)})`,
           `--sway:${sway}px`, `--fop:${op}`,
           `animation-duration:${dur}s`,
           `animation-delay:${del}s`,
